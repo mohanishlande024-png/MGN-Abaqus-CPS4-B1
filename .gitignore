@@ -1,0 +1,24 @@
+.venv/
+MGN-Public/
+MGN-Public-main*
+scriptsmove/
+__pycache__/
+*.zip
+
+# keep only the final trained model from results
+results/eval/
+
+# Abaqus job output (huge, not code)
+*.odb
+*.cae
+*.sim
+*.prt
+*.msg
+*.sta
+*.dat
+*.com
+*.lck
+*.jnl
+*.rpy
+*.recresults_aug20/ results_test/ data/dataset_aug20.pt data/plots_aug20/ data/unseen_shapes/
+results_aug20/

@@ -1,0 +1,46 @@
+geometry,name,family,split,kind,a_mm,b_mm,n_sides,param,element,n_nodes,n_elements,min_angle_deg,max_aspect,symmetric,loads_done,status
+plate_si_E_H1,E_H1,horizontal_ellipse,train,ellipse,32.000000,32.000000,,a/b=1,CPS4,2244,2120,41.6,2.1,both axes,23,completed
+plate_si_E_H1p25,E_H1p25,horizontal_ellipse,train,ellipse,35.777088,28.621670,,a/b=1.25,CPS4,2132,2008,41.7,2.1,both axes,23,completed
+plate_si_E_H1p5,E_H1p5,horizontal_ellipse,test_interp,ellipse,39.191836,26.127891,,a/b=1.5,CPS4,2020,1896,40.1,2.2,both axes,23,completed
+plate_si_E_H2,E_H2,horizontal_ellipse,train,ellipse,45.254834,22.627417,,a/b=2,CPS4,2172,2040,39.4,2.4,both axes,23,completed
+plate_si_E_H2p5,E_H2p5,horizontal_ellipse,train,ellipse,50.596443,20.238577,,a/b=2.5,CPS4,2324,2184,35.9,2.4,both axes,23,completed
+plate_si_E_H3,E_H3,horizontal_ellipse,val,ellipse,55.425626,18.475209,,a/b=3,CPS4,2476,2328,31.3,2.8,both axes,23,completed
+plate_si_E_H4,E_H4,horizontal_ellipse,train,ellipse,64.000000,16.000000,,a/b=4,CPS4,2892,2728,28.9,3.4,both axes,23,completed
+plate_si_E_H5,E_H5,horizontal_ellipse,test_interp,ellipse,71.554175,14.310835,,a/b=5,CPS4,3308,3128,26.2,3.9,both axes,23,completed
+plate_si_E_H6,E_H6,horizontal_ellipse,train,ellipse,78.383672,13.063945,,a/b=6,CPS4,3686,3492,24.3,4.1,both axes,23,completed
+plate_si_E_H8,E_H8,horizontal_ellipse,test_extrap,ellipse,90.509668,11.313708,,a/b=8,CPS4,4420,4200,19.6,4.6,both axes,23,completed
+plate_si_E_V1p25,E_V1p25,vertical_ellipse,train,ellipse,28.621670,35.777088,,b/a=1.25,CPS4,2426,2304,41.7,2.2,both axes,23,completed
+plate_si_E_V1p5,E_V1p5,vertical_ellipse,test_interp,ellipse,26.127891,39.191836,,b/a=1.5,CPS4,2534,2412,40.1,2.4,both axes,23,completed
+plate_si_E_V2,E_V2,vertical_ellipse,train,ellipse,22.627417,45.254834,,b/a=2,CPS4,2902,2772,39.4,2.8,both axes,23,completed
+plate_si_E_V2p5,E_V2p5,vertical_ellipse,train,ellipse,20.238577,50.596443,,b/a=2.5,CPS4,3270,3132,35.9,3.3,both axes,23,completed
+plate_si_E_V3,E_V3,vertical_ellipse,val,ellipse,18.475209,55.425626,,b/a=3,CPS4,3638,3492,31.3,3.8,both axes,23,completed
+plate_si_E_V4,E_V4,vertical_ellipse,train,ellipse,16.000000,64.000000,,b/a=4,CPS4,4266,4104,28.9,4.3,both axes,23,completed
+plate_si_E_V5,E_V5,vertical_ellipse,test_interp,ellipse,14.310835,71.554175,,b/a=5,CPS4,4894,4716,26.2,4.9,both axes,23,completed
+plate_si_E_V6,E_V6,vertical_ellipse,train,ellipse,13.063945,78.383672,,b/a=6,CPS4,5236,5048,24.3,5.5,both axes,23,completed
+plate_si_E_V8,E_V8,vertical_ellipse,test_extrap,ellipse,11.313708,90.509668,,b/a=8,CPS4,6108,5896,19.6,6.2,both axes,23,completed
+plate_si_R_W64,R_W64,rect_width_shrinks,train,rect,64.000000,64.000000,,a=64 b=64,CPS4,5072,4864,45.0,6.2,both axes,23,completed
+plate_si_R_W56,R_W56,rect_width_shrinks,train,rect,56.000000,64.000000,,a=56 b=64,CPS4,4734,4536,44.0,6.1,both axes,23,completed
+plate_si_R_W48,R_W48,rect_width_shrinks,test_interp,rect,48.000000,64.000000,,a=48 b=64,CPS4,4658,4464,42.2,6.2,both axes,23,completed
+plate_si_R_W40,R_W40,rect_width_shrinks,train,rect,40.000000,64.000000,,a=40 b=64,CPS4,4474,4284,42.3,6.4,both axes,23,completed
+plate_si_R_W32,R_W32,rect_width_shrinks,train,rect,32.000000,64.000000,,a=32 b=64,CPS4,4214,4032,41.4,6.1,both axes,23,completed
+plate_si_R_W24,R_W24,rect_width_shrinks,val,rect,24.000000,64.000000,,a=24 b=64,CPS4,4072,3896,39.5,6.2,both axes,23,completed
+plate_si_R_W20,R_W20,rect_width_shrinks,train,rect,20.000000,64.000000,,a=20 b=64,CPS4,3788,3616,40.5,5.4,both axes,23,completed
+plate_si_R_W16,R_W16,rect_width_shrinks,test_interp,rect,16.000000,64.000000,,a=16 b=64,CPS4,3608,3440,39.0,4.5,both axes,23,completed
+plate_si_R_W12,R_W12,rect_width_shrinks,train,rect,12.000000,64.000000,,a=12 b=64,CPS4,3248,3088,39.6,4.4,both axes,23,completed
+plate_si_R_W8,R_W8,rect_width_shrinks,test_extrap,rect,8.000000,64.000000,,a=8 b=64,CPS4,2992,2840,39.0,4.0,both axes,23,completed
+plate_si_R_H56,R_H56,rect_height_shrinks,train,rect,64.000000,56.000000,,a=64 b=56,CPS4,4808,4608,44.0,6.1,both axes,23,completed
+plate_si_R_H48,R_H48,rect_height_shrinks,test_interp,rect,64.000000,48.000000,,a=64 b=48,CPS4,4620,4424,42.3,6.2,both axes,23,completed
+plate_si_R_H40,R_H40,rect_height_shrinks,train,rect,64.000000,40.000000,,a=64 b=40,CPS4,4544,4352,42.3,6.4,both axes,23,completed
+plate_si_R_H32,R_H32,rect_height_shrinks,train,rect,64.000000,32.000000,,a=64 b=32,CPS4,4280,4096,41.4,6.1,both axes,23,completed
+plate_si_R_H24,R_H24,rect_height_shrinks,val,rect,64.000000,24.000000,,a=64 b=24,CPS4,4030,3852,39.5,6.2,both axes,23,completed
+plate_si_R_H20,R_H20,rect_height_shrinks,train,rect,64.000000,20.000000,,a=64 b=20,CPS4,4062,3888,40.5,5.4,both axes,23,completed
+plate_si_R_H16,R_H16,rect_height_shrinks,test_interp,rect,64.000000,16.000000,,a=64 b=16,CPS4,3920,3752,39.0,4.5,both axes,23,completed
+plate_si_R_H12,R_H12,rect_height_shrinks,train,rect,64.000000,12.000000,,a=64 b=12,CPS4,3768,3608,39.6,4.4,both axes,23,completed
+plate_si_R_H8,R_H8,rect_height_shrinks,test_extrap,rect,64.000000,8.000000,,a=64 b=8,CPS4,3512,3360,39.0,4.0,both axes,23,completed
+plate_si_P10,P10,polygon,train,poly,64.000000,64.000000,10,n=10,CPS4,6148,5912,44.4,8.2,both axes,23,completed
+plate_si_P9,P9,polygon,train,poly,64.000000,64.000000,9,n=9,CPS4,5632,5404,43.7,8.4,left-right,23,completed
+plate_si_P8,P8,polygon,train,poly,64.000000,64.000000,8,n=8,CPS4,5514,5292,45.0,8.0,both axes,23,completed
+plate_si_P7,P7,polygon,test_interp,poly,64.000000,64.000000,7,n=7,CPS4,5134,4924,42.0,8.1,left-right,23,completed
+plate_si_P6,P6,polygon,train,poly,64.000000,64.000000,6,n=6,CPS4,4424,4224,44.5,7.8,both axes,23,completed
+plate_si_P5,P5,polygon,train,poly,64.000000,64.000000,5,n=5,CPS4,4390,4200,42.7,7.1,left-right,23,completed
+plate_si_P3,P3,polygon,test_extrap,poly,64.000000,64.000000,3,n=3,CPS4,3612,3452,36.4,5.0,left-right,23,completed
