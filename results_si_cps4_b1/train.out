@@ -1,0 +1,1283 @@
+/home/guest1/mgn/cps4_b1/scripts/train_b1_val.py:94: UserWarning: Reading `.npy` or `.npz` file required additional header parsing as it was created on Python 2. Save the file again to speed up loading and avoid this warning.
+  coords = d["coords"].astype(np.float32)
+/home/guest1/mgn/cps4_b1/scripts/train_b1_val.py:97: UserWarning: Reading `.npy` or `.npz` file required additional header parsing as it was created on Python 2. Save the file again to speed up loading and avoid this warning.
+  ei, nt, fl = build_topology(coords, d["tris"].astype(np.int64), name,
+/home/guest1/mgn/cps4_b1/scripts/train_b1_val.py:102: UserWarning: Reading `.npy` or `.npz` file required additional header parsing as it was created on Python 2. Save the file again to speed up loading and avoid this warning.
+  von_mises=d["mises"].astype(np.float32), metadata={"load": float(d["load"])},
+MGN using: cuda
+==========================================================================
+MGN TRAINING - RUN B1 WITH VALIDATION
+==========================================================================
+training       540 cases  (27 geometries x 20 loads)  data/si_cps4/dataset_si_cps4_aug20.pt
+validation     80 cases  (4 geometries x 20 loads: E_H3, E_V3, R_H24, R_W24)  data/si_cps4/val
+device         cuda  (NVIDIA RTX A4500)
+epochs         10000   batch 1   lr 1e-05   layers 20   hidden 64   R2 every 50 epochs
+augmentation   20% random edges, base seed 0, RE-DRAWN every epoch
+anchors        hole + corner, 14 numbers per node, in every layer
+results        results_si_cps4_b1
+==========================================================================
+Node types found:
+  applied_load: 16660
+  fixed: 16660
+  free: 90240
+  hole: 65000
+  interior: 1944440
+  Total: 2133000
+
+ANCHORS FOUND  (hole strength = log(1 + curvature x H); corner strength = excess turning, rad)
+  geometry                    holes h.nodes  corners max hole s max corn s
+  plate_si_E_H1                   1      68        0       2.18       0.00
+  plate_si_E_H1p25                1      68        2       2.48       0.08
+  plate_si_E_H2                   1      76        4       3.13       0.42
+  plate_si_E_H2p5                 1      84        2       3.46       0.79
+  plate_si_E_H4                   1     108        2       4.14       1.56
+  plate_si_E_H6                   1     136        2       4.74       1.87
+  plate_si_E_V1p25                1      68        2       2.48       0.08
+  plate_si_E_V2                   1      76        4       3.13       0.42
+  plate_si_E_V2p5                 1      84        2       3.46       0.79
+  plate_si_E_V4                   1     108        2       4.14       1.56
+  plate_si_E_V6                   1     136        2       4.74       1.87
+  plate_si_P10                    1     184       10       4.43       0.31
+  plate_si_P5                     1     138        5       4.43       0.92
+  plate_si_P6                     1     148        6       4.43       0.72
+  plate_si_P8                     1     168        8       4.43       0.46
+  plate_si_P9                     1     176        9       4.43       0.38
+  plate_si_R_H12                  1     108        4       4.43       1.14
+  plate_si_R_H20                  1     120        4       4.43       1.18
+  plate_si_R_H32                  1     128        4       4.43       1.23
+  plate_si_R_H40                  1     136        4       4.43       1.26
+  plate_si_R_H56                  1     144        4       4.43       1.30
+  plate_si_R_W12                  1     108        4       4.43       1.14
+  plate_si_R_W20                  1     120        4       4.43       1.18
+  plate_si_R_W32                  1     128        4       4.43       1.23
+  plate_si_R_W40                  1     136        4       4.43       1.26
+  plate_si_R_W56                  1     144        4       4.43       1.30
+  plate_si_R_W64                  1     152        4       4.43       1.32
+
+ANCHORS FOUND - VALIDATION SHAPES  (hole strength = log(1 + curvature x H); corner strength = excess turning, rad)
+  geometry                    holes h.nodes  corners max hole s max corn s
+  plate_si_E_H3                   1      92        2       3.72       0.98
+  plate_si_E_V3                   1      92        2       3.72       0.98
+  plate_si_R_H24                  1     124        4       4.43       1.20
+  plate_si_R_W24                  1     124        4       4.43       1.20
+
+global inputs  15 columns: load, hole_r, hole_log_r, hole_cos, hole_sin, hole_cos2, hole_sin2, hole_s, corner_r, corner_log_r, corner_cos, corner_sin, corner_cos2, corner_sin2, corner_s
+parameters     593617
+preprocessing  4 s
+
+scoring the untrained model (epoch 0) ...
+   R2 at epoch 0:  train -31.2867   validation -35.2505   (gap +3.9638, worst val E_H3 @ 10 = -758.3227)  <- best validation so far, saved
+
+epoch      loss        elapsed     eta
+----------------------------------------------------
+     1   0.946388   0h00m21s   60h28m38s
+    10   0.283066   0h02m18s   38h31m45s
+    20   0.135231   0h04m30s   37h31m42s
+    30   0.094437   0h06m41s   37h04m16s
+    40   0.073973   0h08m53s   36h54m35s
+    50   0.056273   0h11m05s   36h48m41s
+   R2 at epoch 50:  train 0.7577   validation 0.7720   (gap -0.0143, worst val E_H3 @ 10 = -0.8542)  <- best validation so far, saved
+    60   0.046381   0h13m25s   37h03m21s
+    70   0.039844   0h15m37s   36h55m27s
+    80   0.035225   0h17m48s   36h47m55s
+    90   0.030386   0h19m58s   36h40m14s
+   100   0.028368   0h22m09s   36h34m15s
+   R2 at epoch 100:  train 0.8810   validation 0.8864   (gap -0.0054, worst val E_H3 @ 10 = -0.1102)  <- best validation so far, saved
+   110   0.024282   0h24m30s   36h43m33s
+   120   0.023528   0h26m42s   36h39m05s
+   130   0.022830   0h28m53s   36h33m48s
+   140   0.019159   0h31m05s   36h29m30s
+   150   0.020591   0h33m16s   36h25m05s
+   R2 at epoch 150:  train 0.9132   validation 0.9093   (gap +0.0040, worst val E_H3 @ 10 = 0.3220)  <- best validation so far, saved
+   160   0.017494   0h35m35s   36h29m07s
+   170   0.016332   0h37m47s   36h24m59s
+   180   0.017030   0h39m58s   36h20m36s
+   190   0.014041   0h42m08s   36h16m01s
+   200   0.013669   0h44m19s   36h12m10s
+   R2 at epoch 200:  train 0.9389   validation 0.9382   (gap +0.0007, worst val E_H3 @ 10 = 0.4797)  <- best validation so far, saved
+   210   0.010712   0h46m39s   36h14m47s
+   220   0.012273   0h48m50s   36h10m59s
+   230   0.010653   0h51m00s   36h06m52s
+   240   0.009972   0h53m12s   36h03m35s
+   250   0.009360   0h55m23s   36h00m01s
+   R2 at epoch 250:  train 0.9502   validation 0.9395   (gap +0.0108, worst val E_H3 @ 10 = 0.4730)  <- best validation so far, saved
+   260   0.009368   0h57m41s   36h01m05s
+   270   0.008010   0h59m51s   35h57m06s
+   280   0.007972   1h02m03s   35h54m06s
+   290   0.007799   1h04m14s   35h51m14s
+   300   0.008169   1h06m26s   35h48m14s
+   R2 at epoch 300:  train 0.9551   validation 0.9367   (gap +0.0184, worst val E_H3 @ 10 = 0.4480)
+   310   0.007554   1h08m46s   35h49m40s
+   320   0.007641   1h10m57s   35h46m30s
+   330   0.005944   1h13m08s   35h43m09s
+   340   0.006238   1h15m20s   35h40m25s
+   350   0.006620   1h17m30s   35h37m13s
+   R2 at epoch 350:  train 0.9737   validation 0.9661   (gap +0.0076, worst val E_H3 @ 10 = 0.6200)  <- best validation so far, saved
+   360   0.007029   1h19m50s   35h37m50s
+   370   0.005772   1h22m01s   35h34m52s
+   380   0.005506   1h24m12s   35h31m53s
+   390   0.006338   1h26m23s   35h28m49s
+   400   0.005680   1h28m34s   35h25m51s
+   R2 at epoch 400:  train 0.9755   validation 0.9705   (gap +0.0050, worst val E_H3 @ 10 = 0.5354)  <- best validation so far, saved
+   410   0.006521   1h30m54s   35h26m19s
+   420   0.004415   1h33m04s   35h23m09s
+   430   0.004842   1h35m16s   35h20m21s
+   440   0.004175   1h37m27s   35h17m27s
+   450   0.005322   1h39m38s   35h14m44s
+   R2 at epoch 450:  train 0.9766   validation 0.9632   (gap +0.0133, worst val E_H3 @ 10 = 0.4668)
+   460   0.004541   1h41m57s   35h14m33s
+   470   0.004392   1h44m08s   35h11m29s
+   480   0.005126   1h46m18s   35h08m35s
+   490   0.003538   1h48m29s   35h05m45s
+   500   0.003860   1h50m41s   35h03m07s
+   R2 at epoch 500:  train 0.9133   validation 0.8662   (gap +0.0470, worst val E_H3 @ 10 = 0.1389)
+   510   0.003792   1h53m01s   35h03m01s
+   520   0.004060   1h55m11s   35h00m08s
+   530   0.003402   1h57m22s   34h57m19s
+   540   0.003468   1h59m33s   34h54m29s
+   550   0.003727   2h01m44s   34h51m40s
+   R2 at epoch 550:  train 0.9829   validation 0.9780   (gap +0.0049, worst val E_H3 @ 10 = 0.7901)  <- best validation so far, saved
+   560   0.003478   2h04m02s   34h51m07s
+   570   0.003445   2h06m13s   34h48m13s
+   580   0.003120   2h08m24s   34h45m29s
+   590   0.003130   2h10m35s   34h42m53s
+   600   0.003010   2h12m46s   34h40m15s
+   R2 at epoch 600:  train 0.9683   validation 0.9463   (gap +0.0221, worst val R_H24 @ 10 = 0.5496)
+   610   0.003127   2h15m05s   34h39m30s
+   620   0.003524   2h17m16s   34h36m55s
+   630   0.003011   2h19m27s   34h34m16s
+   640   0.002872   2h21m38s   34h31m35s
+   650   0.002618   2h23m51s   34h29m14s
+   R2 at epoch 650:  train 0.9863   validation 0.9758   (gap +0.0105, worst val E_H3 @ 10 = 0.8232)
+   660   0.003107   2h26m09s   34h28m27s
+   670   0.003290   2h28m20s   34h25m47s
+   680   0.002942   2h30m31s   34h23m08s
+   690   0.003311   2h32m43s   34h20m42s
+   700   0.002714   2h34m54s   34h18m07s
+   R2 at epoch 700:  train 0.9779   validation 0.9581   (gap +0.0198, worst val E_H3 @ 10 = 0.6026)
+   710   0.002390   2h37m14s   34h17m26s
+   720   0.002961   2h39m25s   34h14m43s
+   730   0.002546   2h41m35s   34h12m03s
+   740   0.002436   2h43m45s   34h09m14s
+   750   0.002783   2h45m56s   34h06m41s
+   R2 at epoch 750:  train 0.9845   validation 0.9813   (gap +0.0032, worst val E_H3 @ 10 = 0.8736)  <- best validation so far, saved
+   760   0.002631   2h48m16s   34h05m53s
+   770   0.002856   2h50m29s   34h03m35s
+   780   0.002507   2h52m39s   34h00m56s
+   790   0.002305   2h54m52s   33h58m44s
+   800   0.002497   2h57m04s   33h56m16s
+   R2 at epoch 800:  train 0.9884   validation 0.9781   (gap +0.0102, worst val E_H3 @ 10 = 0.8256)
+   810   0.002673   2h59m23s   33h55m20s
+   820   0.002273   3h01m34s   33h52m40s
+   830   0.002169   3h03m44s   33h50m03s
+   840   0.002315   3h05m55s   33h47m24s
+   850   0.002586   3h08m05s   33h44m45s
+   R2 at epoch 850:  train 0.9898   validation 0.9742   (gap +0.0156, worst val E_H3 @ 10 = 0.8398)
+   860   0.002268   3h10m24s   33h43m43s
+   870   0.002417   3h12m36s   33h41m20s
+   880   0.002279   3h14m46s   33h38m37s
+   890   0.002054   3h16m58s   33h36m11s
+   900   0.002196   3h19m10s   33h33m50s
+   R2 at epoch 900:  train 0.9881   validation 0.9799   (gap +0.0082, worst val E_H3 @ 10 = 0.8467)
+   910   0.001830   3h21m28s   33h32m35s
+   920   0.001771   3h23m40s   33h30m15s
+   930   0.001838   3h25m51s   33h27m36s
+   940   0.002208   3h28m03s   33h25m20s
+   950   0.001884   3h30m15s   33h22m55s
+   R2 at epoch 950:  train 0.9839   validation 0.9696   (gap +0.0142, worst val R_H24 @ 10 = 0.7655)
+   960   0.002245   3h32m34s   33h21m44s
+   970   0.001743   3h34m45s   33h19m10s
+   980   0.001911   3h36m56s   33h16m46s
+   990   0.001921   3h39m06s   33h14m08s
+  1000   0.001956   3h41m18s   33h11m43s
+   R2 at epoch 1000:  train 0.9838   validation 0.9604   (gap +0.0234, worst val R_H24 @ 10 = 0.6071)
+  1010   0.001880   3h43m37s   33h10m31s
+  1020   0.001851   3h45m49s   33h08m10s
+  1030   0.001847   3h48m00s   33h05m36s
+  1040   0.001749   3h50m11s   33h03m09s
+  1050   0.001866   3h52m22s   33h00m46s
+   R2 at epoch 1050:  train 0.9871   validation 0.9639   (gap +0.0232, worst val E_H3 @ 10 = 0.8360)
+  1060   0.001662   3h54m41s   32h59m19s
+  1070   0.001596   3h56m51s   32h56m48s
+  1080   0.001940   3h59m01s   32h54m14s
+  1090   0.001724   4h01m13s   32h51m53s
+  1100   0.001934   4h03m24s   32h49m27s
+   R2 at epoch 1100:  train 0.9830   validation 0.9616   (gap +0.0215, worst val R_H24 @ 10 = 0.6844)
+  1110   0.002018   4h05m44s   32h48m06s
+  1120   0.001478   4h07m55s   32h45m40s
+  1130   0.001801   4h10m05s   32h43m07s
+  1140   0.001605   4h12m16s   32h40m37s
+  1150   0.001646   4h14m26s   32h38m04s
+   R2 at epoch 1150:  train 0.9905   validation 0.9848   (gap +0.0057, worst val E_H3 @ 10 = 0.9114)  <- best validation so far, saved
+  1160   0.001517   4h16m46s   32h36m44s
+  1170   0.001488   4h18m57s   32h34m21s
+  1180   0.001375   4h21m09s   32h32m03s
+  1190   0.001484   4h23m21s   32h29m40s
+  1200   0.001469   4h25m32s   32h27m19s
+   R2 at epoch 1200:  train 0.9904   validation 0.9628   (gap +0.0275, worst val R_H24 @ 10 = 0.8537)
+  1210   0.001652   4h27m52s   32h25m55s
+  1220   0.001796   4h30m02s   32h23m27s
+  1230   0.001823   4h32m14s   32h21m04s
+  1240   0.001763   4h34m24s   32h18m35s
+  1250   0.002023   4h36m34s   32h16m03s
+   R2 at epoch 1250:  train 0.9928   validation 0.9804   (gap +0.0124, worst val E_H3 @ 10 = 0.9190)
+  1260   0.001397   4h38m54s   32h14m36s
+  1270   0.001430   4h41m07s   32h12m25s
+  1280   0.001552   4h43m17s   32h09m52s
+  1290   0.001140   4h45m28s   32h07m27s
+  1300   0.001409   4h47m38s   32h04m57s
+   R2 at epoch 1300:  train 0.9930   validation 0.9830   (gap +0.0100, worst val E_H3 @ 10 = 0.9187)
+  1310   0.001312   4h49m57s   32h03m30s
+  1320   0.001670   4h52m09s   32h01m09s
+  1330   0.001494   4h54m19s   31h58m37s
+  1340   0.001459   4h56m30s   31h56m15s
+  1350   0.001826   4h58m40s   31h53m46s
+   R2 at epoch 1350:  train 0.9918   validation 0.9665   (gap +0.0253, worst val R_H24 @ 10 = 0.8438)
+  1360   0.001357   5h01m00s   31h52m15s
+  1370   0.001162   5h03m11s   31h49m55s
+  1380   0.001235   5h05m23s   31h47m32s
+  1390   0.001392   5h07m34s   31h45m12s
+  1400   0.001336   5h09m47s   31h43m02s
+   R2 at epoch 1400:  train 0.9923   validation 0.9735   (gap +0.0188, worst val R_H24 @ 10 = 0.8657)
+  1410   0.001230   5h12m06s   31h41m28s
+  1420   0.001179   5h14m17s   31h38m59s
+  1430   0.001250   5h16m27s   31h36m31s
+  1440   0.001381   5h18m38s   31h34m07s
+  1450   0.001318   5h20m49s   31h31m44s
+   R2 at epoch 1450:  train 0.9928   validation 0.9746   (gap +0.0182, worst val E_H3 @ 10 = 0.8563)
+  1460   0.001272   5h23m09s   31h30m12s
+  1470   0.001067   5h25m19s   31h27m45s
+  1480   0.001065   5h27m29s   31h25m14s
+  1490   0.001142   5h29m40s   31h22m52s
+  1500   0.001148   5h31m50s   31h20m27s
+   R2 at epoch 1500:  train 0.9929   validation 0.9695   (gap +0.0234, worst val R_H24 @ 110 = 0.9133)
+  1510   0.001475   5h34m09s   31h18m47s
+  1520   0.001112   5h36m20s   31h16m26s
+  1530   0.001315   5h38m32s   31h14m10s
+  1540   0.001319   5h40m45s   31h11m55s
+  1550   0.001246   5h42m55s   31h09m31s
+   R2 at epoch 1550:  train 0.9816   validation 0.9658   (gap +0.0158, worst val E_H3 @ 10 = 0.7535)
+  1560   0.001323   5h45m14s   31h07m52s
+  1570   0.001231   5h47m26s   31h05m32s
+  1580   0.001436   5h49m37s   31h03m09s
+  1590   0.001287   5h51m48s   31h00m51s
+  1600   0.001141   5h54m01s   30h58m36s
+   R2 at epoch 1600:  train 0.9937   validation 0.9822   (gap +0.0115, worst val E_H3 @ 10 = 0.8939)
+  1610   0.001259   5h56m20s   30h56m59s
+  1620   0.001025   5h58m31s   30h54m34s
+  1630   0.001052   6h00m42s   30h52m11s
+  1640   0.001127   6h02m52s   30h49m49s
+  1650   0.001118   6h05m04s   30h47m28s
+   R2 at epoch 1650:  train 0.9916   validation 0.9679   (gap +0.0236, worst val R_H24 @ 10 = 0.8921)
+  1660   0.001187   6h07m23s   30h45m49s
+  1670   0.000992   6h09m34s   30h43m25s
+  1680   0.001334   6h11m46s   30h41m09s
+  1690   0.001154   6h13m59s   30h38m57s
+  1700   0.001117   6h16m10s   30h36m35s
+   R2 at epoch 1700:  train 0.9945   validation 0.9864   (gap +0.0081, worst val E_H3 @ 10 = 0.9362)  <- best validation so far, saved
+  1710   0.001136   6h18m30s   30h34m59s
+  1720   0.000993   6h20m41s   30h32m35s
+  1730   0.001348   6h22m51s   30h30m12s
+  1740   0.000944   6h25m03s   30h27m53s
+  1750   0.001103   6h27m14s   30h25m33s
+   R2 at epoch 1750:  train 0.9937   validation 0.9761   (gap +0.0175, worst val R_H24 @ 10 = 0.9239)
+  1760   0.001061   6h29m33s   30h23m48s
+  1770   0.001053   6h31m43s   30h21m23s
+  1780   0.001201   6h33m54s   30h19m02s
+  1790   0.000979   6h36m05s   30h16m43s
+  1800   0.000827   6h38m16s   30h14m19s
+   R2 at epoch 1800:  train 0.9923   validation 0.9830   (gap +0.0094, worst val E_H3 @ 10 = 0.9214)
+  1810   0.001088   6h40m35s   30h12m35s
+  1820   0.001148   6h42m47s   30h10m19s
+  1830   0.000998   6h44m58s   30h07m58s
+  1840   0.001027   6h47m08s   30h05m37s
+  1850   0.001006   6h49m20s   30h03m20s
+   R2 at epoch 1850:  train 0.9945   validation 0.9773   (gap +0.0171, worst val R_H24 @ 110 = 0.9279)
+  1860   0.000852   6h51m40s   30h01m39s
+  1870   0.000901   6h53m53s   29h59m24s
+  1880   0.000951   6h56m03s   29h57m00s
+  1890   0.001161   6h58m14s   29h54m41s
+  1900   0.000938   7h00m26s   29h52m22s
+   R2 at epoch 1900:  train 0.9893   validation 0.9704   (gap +0.0189, worst val E_H3 @ 10 = 0.8744)
+  1910   0.000810   7h02m45s   29h50m36s
+  1920   0.000901   7h04m56s   29h48m16s
+  1930   0.001363   7h07m07s   29h45m57s
+  1940   0.000812   7h09m19s   29h43m40s
+  1950   0.000905   7h11m29s   29h41m18s
+   R2 at epoch 1950:  train 0.9922   validation 0.9859   (gap +0.0063, worst val E_H3 @ 10 = 0.9331)
+  1960   0.000778   7h13m48s   29h39m28s
+  1970   0.000812   7h15m59s   29h37m08s
+  1980   0.000826   7h18m09s   29h34m47s
+  1990   0.000866   7h20m21s   29h32m30s
+  2000   0.001047   7h22m32s   29h30m09s
+   R2 at epoch 2000:  train 0.9921   validation 0.9787   (gap +0.0134, worst val E_H3 @ 10 = 0.8558)
+  2010   0.000923   7h24m52s   29h28m24s
+  2020   0.000865   7h27m02s   29h26m03s
+  2030   0.000952   7h29m15s   29h23m50s
+  2040   0.000954   7h31m26s   29h21m30s
+  2050   0.001021   7h33m37s   29h19m09s
+   R2 at epoch 2050:  train 0.9935   validation 0.9830   (gap +0.0105, worst val R_H24 @ 10 = 0.9398)
+  2060   0.000983   7h35m56s   29h17m23s
+  2070   0.001046   7h38m08s   29h15m05s
+  2080   0.000828   7h40m19s   29h12m47s
+  2090   0.000705   7h42m31s   29h10m30s
+  2100   0.001035   7h44m41s   29h08m08s
+   R2 at epoch 2100:  train 0.9956   validation 0.9777   (gap +0.0179, worst val R_H24 @ 75 = 0.9420)
+  2110   0.000906   7h46m59s   29h06m15s
+  2120   0.000849   7h49m11s   29h03m59s
+  2130   0.000963   7h51m22s   29h01m40s
+  2140   0.001067   7h53m33s   28h59m21s
+  2150   0.000731   7h55m44s   28h57m01s
+   R2 at epoch 2150:  train 0.9957   validation 0.9761   (gap +0.0196, worst val R_H24 @ 10 = 0.9155)
+  2160   0.000883   7h58m04s   28h55m12s
+  2170   0.000862   8h00m14s   28h52m51s
+  2180   0.000802   8h02m24s   28h50m28s
+  2190   0.000762   8h04m35s   28h48m09s
+  2200   0.000730   8h06m46s   28h45m50s
+   R2 at epoch 2200:  train 0.9936   validation 0.9641   (gap +0.0295, worst val R_H24 @ 110 = 0.8748)
+  2210   0.000733   8h09m05s   28h44m00s
+  2220   0.000803   8h11m16s   28h41m40s
+  2230   0.000831   8h13m26s   28h39m17s
+  2240   0.000717   8h15m37s   28h36m59s
+  2250   0.000991   8h17m49s   28h34m42s
+   R2 at epoch 2250:  train 0.9948   validation 0.9750   (gap +0.0198, worst val R_H24 @ 10 = 0.9109)
+  2260   0.000724   8h20m09s   28h32m55s
+  2270   0.000943   8h22m18s   28h30m30s
+  2280   0.000822   8h24m29s   28h28m12s
+  2290   0.000999   8h26m41s   28h25m55s
+  2300   0.000832   8h28m51s   28h23m35s
+   R2 at epoch 2300:  train 0.9956   validation 0.9795   (gap +0.0161, worst val R_H24 @ 10 = 0.9252)
+  2310   0.000894   8h31m11s   28h21m46s
+  2320   0.000649   8h33m23s   28h19m30s
+  2330   0.000846   8h35m35s   28h17m16s
+  2340   0.000713   8h37m47s   28h14m59s
+  2350   0.000770   8h39m57s   28h12m38s
+   R2 at epoch 2350:  train 0.9959   validation 0.9759   (gap +0.0201, worst val R_H24 @ 110 = 0.9099)
+  2360   0.000727   8h42m16s   28h10m45s
+  2370   0.000941   8h44m27s   28h08m26s
+  2380   0.000754   8h46m38s   28h06m08s
+  2390   0.000792   8h48m49s   28h03m49s
+  2400   0.000764   8h51m00s   28h01m31s
+   R2 at epoch 2400:  train 0.9958   validation 0.9746   (gap +0.0212, worst val R_H24 @ 110 = 0.9184)
+  2410   0.000761   8h53m18s   27h59m36s
+  2420   0.000650   8h55m31s   27h57m21s
+  2430   0.000662   8h57m41s   27h55m02s
+  2440   0.000685   8h59m53s   27h52m45s
+  2450   0.000694   9h02m03s   27h50m25s
+   R2 at epoch 2450:  train 0.9956   validation 0.9818   (gap +0.0139, worst val R_H24 @ 110 = 0.9272)
+  2460   0.000746   9h04m22s   27h48m31s
+  2470   0.000821   9h06m33s   27h46m14s
+  2480   0.000631   9h08m43s   27h43m53s
+  2490   0.000792   9h10m54s   27h41m34s
+  2500   0.000757   9h13m05s   27h39m17s
+   R2 at epoch 2500:  train 0.9936   validation 0.9789   (gap +0.0146, worst val E_H3 @ 10 = 0.9300)
+  2510   0.000814   9h15m25s   27h37m24s
+  2520   0.000653   9h17m36s   27h35m07s
+  2530   0.000672   9h19m48s   27h32m51s
+  2540   0.000769   9h21m59s   27h30m33s
+  2550   0.000706   9h24m10s   27h28m16s
+   R2 at epoch 2550:  train 0.9962   validation 0.9758   (gap +0.0205, worst val R_H24 @ 110 = 0.9148)
+  2560   0.000689   9h26m30s   27h26m23s
+  2570   0.000656   9h28m40s   27h24m04s
+  2580   0.000750   9h30m52s   27h21m48s
+  2590   0.000732   9h33m03s   27h19m32s
+  2600   0.000696   9h35m15s   27h17m15s
+   R2 at epoch 2600:  train 0.9939   validation 0.9802   (gap +0.0137, worst val R_H24 @ 110 = 0.9408)
+  2610   0.000554   9h37m34s   27h15m20s
+  2620   0.000658   9h39m45s   27h13m04s
+  2630   0.000740   9h41m56s   27h10m44s
+  2640   0.000612   9h44m07s   27h08m26s
+  2650   0.000664   9h46m19s   27h06m13s
+   R2 at epoch 2650:  train 0.9951   validation 0.9759   (gap +0.0192, worst val E_H3 @ 10 = 0.8976)
+  2660   0.000644   9h48m39s   27h04m21s
+  2670   0.000605   9h50m50s   27h02m03s
+  2680   0.000624   9h53m01s   26h59m44s
+  2690   0.000708   9h55m12s   26h57m26s
+  2700   0.000719   9h57m24s   26h55m13s
+   R2 at epoch 2700:  train 0.9930   validation 0.9614   (gap +0.0316, worst val R_H24 @ 10 = 0.7533)
+  2710   0.000628   9h59m43s   26h53m17s
+  2720   0.000766   10h01m58s   26h51m08s
+  2730   0.000610   10h04m08s   26h48m50s
+  2740   0.000778   10h06m19s   26h46m32s
+  2750   0.000699   10h08m30s   26h44m14s
+   R2 at epoch 2750:  train 0.9962   validation 0.9812   (gap +0.0150, worst val E_H3 @ 10 = 0.9273)
+  2760   0.000562   10h10m49s   26h42m19s
+  2770   0.000524   10h13m01s   26h40m02s
+  2780   0.000651   10h15m12s   26h37m46s
+  2790   0.000613   10h17m22s   26h35m26s
+  2800   0.000696   10h19m32s   26h33m07s
+   R2 at epoch 2800:  train 0.9951   validation 0.9709   (gap +0.0242, worst val R_H24 @ 110 = 0.9047)
+  2810   0.000614   10h21m51s   26h31m10s
+  2820   0.000608   10h24m01s   26h28m49s
+  2830   0.000681   10h26m11s   26h26m29s
+  2840   0.000763   10h28m21s   26h24m11s
+  2850   0.000613   10h30m33s   26h21m54s
+   R2 at epoch 2850:  train 0.9967   validation 0.9786   (gap +0.0181, worst val R_H24 @ 10 = 0.9401)
+  2860   0.000517   10h32m51s   26h19m56s
+  2870   0.000582   10h35m02s   26h17m39s
+  2880   0.000693   10h37m14s   26h15m24s
+  2890   0.000689   10h39m26s   26h13m08s
+  2900   0.000562   10h41m35s   26h10m48s
+   R2 at epoch 2900:  train 0.9959   validation 0.9832   (gap +0.0127, worst val E_H3 @ 10 = 0.9428)
+  2910   0.000573   10h43m55s   26h08m52s
+  2920   0.000795   10h46m07s   26h06m36s
+  2930   0.000785   10h48m17s   26h04m19s
+  2940   0.000726   10h50m27s   26h01m59s
+  2950   0.000527   10h52m38s   25h59m43s
+   R2 at epoch 2950:  train 0.9931   validation 0.9835   (gap +0.0096, worst val E_H3 @ 10 = 0.9277)
+  2960   0.000550   10h54m58s   25h57m47s
+  2970   0.000572   10h57m10s   25h55m32s
+  2980   0.000714   10h59m20s   25h53m13s
+  2990   0.000609   11h01m32s   25h50m57s
+  3000   0.000538   11h03m44s   25h48m44s
+   R2 at epoch 3000:  train 0.9946   validation 0.9850   (gap +0.0096, worst val R_H24 @ 110 = 0.9571)
+  3010   0.000733   11h06m04s   25h46m48s
+  3020   0.000602   11h08m15s   25h44m31s
+  3030   0.000721   11h10m26s   25h42m13s
+  3040   0.000550   11h12m36s   25h39m56s
+  3050   0.000570   11h14m48s   25h37m39s
+   R2 at epoch 3050:  train 0.9946   validation 0.9875   (gap +0.0071, worst val R_H24 @ 110 = 0.9615)  <- best validation so far, saved
+  3060   0.000749   11h17m08s   25h35m44s
+  3070   0.000605   11h19m19s   25h33m26s
+  3080   0.000485   11h21m29s   25h31m09s
+  3090   0.000724   11h23m40s   25h28m51s
+  3100   0.000590   11h25m51s   25h26m36s
+   R2 at epoch 3100:  train 0.9968   validation 0.9811   (gap +0.0157, worst val R_H24 @ 110 = 0.9256)
+  3110   0.000507   11h28m10s   25h24m36s
+  3120   0.000614   11h30m20s   25h22m16s
+  3130   0.000513   11h32m31s   25h20m00s
+  3140   0.000527   11h34m42s   25h17m44s
+  3150   0.000603   11h36m53s   25h15m28s
+   R2 at epoch 3150:  train 0.9963   validation 0.9684   (gap +0.0279, worst val R_H24 @ 30 = 0.8913)
+  3160   0.000626   11h39m13s   25h13m29s
+  3170   0.000605   11h41m23s   25h11m12s
+  3180   0.000529   11h43m35s   25h08m57s
+  3190   0.000561   11h45m45s   25h06m38s
+  3200   0.000563   11h47m55s   25h04m21s
+   R2 at epoch 3200:  train 0.9968   validation 0.9841   (gap +0.0127, worst val R_H24 @ 10 = 0.9491)
+  3210   0.000537   11h50m14s   25h02m21s
+  3220   0.000561   11h52m24s   25h00m03s
+  3230   0.000481   11h54m35s   24h57m46s
+  3240   0.000744   11h56m46s   24h55m30s
+  3250   0.000703   11h58m57s   24h53m13s
+   R2 at epoch 3250:  train 0.9959   validation 0.9740   (gap +0.0219, worst val E_H3 @ 10 = 0.9028)
+  3260   0.000578   12h01m16s   24h51m12s
+  3270   0.000603   12h03m27s   24h48m56s
+  3280   0.000551   12h05m38s   24h46m40s
+  3290   0.000561   12h07m49s   24h44m23s
+  3300   0.000526   12h10m00s   24h42m07s
+   R2 at epoch 3300:  train 0.9942   validation 0.9862   (gap +0.0080, worst val E_H3 @ 10 = 0.9596)
+  3310   0.000516   12h12m20s   24h40m09s
+  3320   0.000608   12h14m31s   24h37m53s
+  3330   0.000478   12h16m42s   24h35m37s
+  3340   0.000557   12h18m53s   24h33m21s
+  3350   0.000567   12h21m04s   24h31m05s
+   R2 at epoch 3350:  train 0.9969   validation 0.9797   (gap +0.0172, worst val E_H3 @ 10 = 0.9330)
+  3360   0.000478   12h23m24s   24h29m06s
+  3370   0.000505   12h25m34s   24h26m49s
+  3380   0.000559   12h27m46s   24h24m34s
+  3390   0.000421   12h29m56s   24h22m17s
+  3400   0.000454   12h32m08s   24h20m02s
+   R2 at epoch 3400:  train 0.9971   validation 0.9755   (gap +0.0216, worst val R_H24 @ 30 = 0.9239)
+  3410   0.000502   12h34m28s   24h18m02s
+  3420   0.000607   12h36m38s   24h15m45s
+  3430   0.000492   12h38m48s   24h13m28s
+  3440   0.000576   12h40m59s   24h11m10s
+  3450   0.000431   12h43m10s   24h08m55s
+   R2 at epoch 3450:  train 0.9974   validation 0.9735   (gap +0.0240, worst val R_H24 @ 110 = 0.9121)
+  3460   0.000620   12h45m29s   24h06m54s
+  3470   0.000521   12h47m40s   24h04m38s
+  3480   0.000474   12h49m52s   24h02m25s
+  3490   0.000539   12h52m02s   24h00m07s
+  3500   0.000462   12h54m14s   23h57m51s
+   R2 at epoch 3500:  train 0.9970   validation 0.9821   (gap +0.0149, worst val R_H24 @ 30 = 0.9548)
+  3510   0.000586   12h56m33s   23h55m52s
+  3520   0.000604   12h58m44s   23h53m36s
+  3530   0.000588   13h00m55s   23h51m20s
+  3540   0.000438   13h03m06s   23h49m03s
+  3550   0.000396   13h05m17s   23h46m47s
+   R2 at epoch 3550:  train 0.9966   validation 0.9706   (gap +0.0259, worst val R_H24 @ 30 = 0.9001)
+  3560   0.000488   13h07m36s   23h44m47s
+  3570   0.000397   13h09m46s   23h42m29s
+  3580   0.000492   13h11m58s   23h40m14s
+  3590   0.000445   13h14m09s   23h37m58s
+  3600   0.000646   13h16m19s   23h35m40s
+   R2 at epoch 3600:  train 0.9962   validation 0.9732   (gap +0.0230, worst val R_H24 @ 110 = 0.9036)
+  3610   0.000561   13h18m38s   23h33m38s
+  3620   0.000428   13h20m49s   23h31m23s
+  3630   0.000580   13h23m01s   23h29m09s
+  3640   0.000586   13h25m11s   23h26m52s
+  3650   0.000411   13h27m23s   23h24m37s
+   R2 at epoch 3650:  train 0.9977   validation 0.9763   (gap +0.0214, worst val R_H24 @ 110 = 0.9197)
+  3660   0.000540   13h29m41s   23h22m35s
+  3670   0.000397   13h31m53s   23h20m20s
+  3680   0.000518   13h34m05s   23h18m06s
+  3690   0.000594   13h36m17s   23h15m53s
+  3700   0.000347   13h38m28s   23h13m36s
+   R2 at epoch 3700:  train 0.9977   validation 0.9803   (gap +0.0175, worst val R_H24 @ 105 = 0.9427)
+  3710   0.000341   13h40m47s   23h11m35s
+  3720   0.000478   13h42m58s   23h09m19s
+  3730   0.000376   13h45m08s   23h07m02s
+  3740   0.000620   13h47m18s   23h04m44s
+  3750   0.000380   13h49m28s   23h02m28s
+   R2 at epoch 3750:  train 0.9974   validation 0.9678   (gap +0.0296, worst val R_H24 @ 35 = 0.8914)
+  3760   0.000572   13h51m47s   23h00m24s
+  3770   0.000516   13h53m58s   22h58m10s
+  3780   0.000466   13h56m09s   22h55m53s
+  3790   0.000484   13h58m20s   22h53m38s
+  3800   0.000445   14h00m31s   22h51m22s
+   R2 at epoch 3800:  train 0.9972   validation 0.9741   (gap +0.0231, worst val R_H24 @ 30 = 0.9230)
+  3810   0.000523   14h02m51s   22h49m22s
+  3820   0.000422   14h05m01s   22h47m05s
+  3830   0.000608   14h07m12s   22h44m49s
+  3840   0.000512   14h09m23s   22h42m33s
+  3850   0.000461   14h11m34s   22h40m18s
+   R2 at epoch 3850:  train 0.9973   validation 0.9716   (gap +0.0257, worst val R_H24 @ 110 = 0.9021)
+  3860   0.000456   14h13m53s   22h38m16s
+  3870   0.000400   14h16m04s   22h36m00s
+  3880   0.000385   14h18m16s   22h33m46s
+  3890   0.000457   14h20m26s   22h31m29s
+  3900   0.000495   14h22m37s   22h29m13s
+   R2 at epoch 3900:  train 0.9972   validation 0.9705   (gap +0.0268, worst val R_H24 @ 105 = 0.8882)
+  3910   0.000300   14h24m56s   22h27m11s
+  3920   0.000495   14h27m08s   22h24m56s
+  3930   0.000416   14h29m18s   22h22m40s
+  3940   0.000422   14h31m29s   22h20m24s
+  3950   0.000477   14h33m40s   22h18m09s
+   R2 at epoch 3950:  train 0.9959   validation 0.9702   (gap +0.0256, worst val R_H24 @ 110 = 0.8887)
+  3960   0.000422   14h35m59s   22h16m05s
+  3970   0.000420   14h38m09s   22h13m49s
+  3980   0.000380   14h40m20s   22h11m34s
+  3990   0.000559   14h42m31s   22h09m18s
+  4000   0.000356   14h44m42s   22h07m04s
+   R2 at epoch 4000:  train 0.9976   validation 0.9722   (gap +0.0254, worst val R_H24 @ 110 = 0.9100)
+  4010   0.000476   14h47m02s   22h05m01s
+  4020   0.000555   14h49m13s   22h02m47s
+  4030   0.000363   14h51m23s   22h00m30s
+  4040   0.000517   14h53m34s   21h58m15s
+  4050   0.000420   14h55m45s   21h55m59s
+   R2 at epoch 4050:  train 0.9968   validation 0.9634   (gap +0.0334, worst val R_H24 @ 30 = 0.8734)
+  4060   0.000345   14h58m04s   21h53m55s
+  4070   0.000504   15h00m15s   21h51m40s
+  4080   0.000389   15h02m27s   21h49m27s
+  4090   0.000437   15h04m39s   21h47m13s
+  4100   0.000441   15h06m50s   21h44m57s
+   R2 at epoch 4100:  train 0.9975   validation 0.9713   (gap +0.0262, worst val R_H24 @ 20 = 0.9060)
+  4110   0.000588   15h09m10s   21h42m56s
+  4120   0.000376   15h11m21s   21h40m41s
+  4130   0.000460   15h13m32s   21h38m25s
+  4140   0.000354   15h15m43s   21h36m10s
+  4150   0.000435   15h17m53s   21h33m53s
+   R2 at epoch 4150:  train 0.9966   validation 0.9662   (gap +0.0304, worst val R_H24 @ 10 = 0.8733)
+  4160   0.000420   15h20m15s   21h31m54s
+  4170   0.000472   15h22m26s   21h29m38s
+  4180   0.000324   15h24m37s   21h27m23s
+  4190   0.000559   15h26m48s   21h25m08s
+  4200   0.000379   15h28m58s   21h22m52s
+   R2 at epoch 4200:  train 0.9971   validation 0.9740   (gap +0.0230, worst val R_H24 @ 110 = 0.9195)
+  4210   0.000533   15h31m19s   21h20m50s
+  4220   0.000386   15h33m32s   21h18m38s
+  4230   0.000471   15h35m43s   21h16m23s
+  4240   0.000374   15h37m54s   21h14m08s
+  4250   0.000490   15h40m05s   21h11m53s
+   R2 at epoch 4250:  train 0.9969   validation 0.9698   (gap +0.0271, worst val R_H24 @ 10 = 0.8822)
+  4260   0.000343   15h42m25s   21h09m49s
+  4270   0.000358   15h44m36s   21h07m34s
+  4280   0.000363   15h46m46s   21h05m18s
+  4290   0.000455   15h48m56s   21h03m03s
+  4300   0.000435   15h51m08s   21h00m48s
+   R2 at epoch 4300:  train 0.9962   validation 0.9812   (gap +0.0150, worst val R_H24 @ 110 = 0.9435)
+  4310   0.000286   15h53m27s   20h58m44s
+  4320   0.000399   15h55m38s   20h56m29s
+  4330   0.000410   15h57m49s   20h54m14s
+  4340   0.000535   16h00m00s   20h51m59s
+  4350   0.000323   16h02m10s   20h49m43s
+   R2 at epoch 4350:  train 0.9969   validation 0.9694   (gap +0.0274, worst val R_H24 @ 30 = 0.8938)
+  4360   0.000395   16h04m30s   20h47m39s
+  4370   0.000321   16h06m41s   20h45m25s
+  4380   0.000503   16h08m53s   20h43m10s
+  4390   0.000572   16h11m04s   20h40m55s
+  4400   0.000360   16h13m16s   20h38m43s
+   R2 at epoch 4400:  train 0.9977   validation 0.9696   (gap +0.0281, worst val R_H24 @ 35 = 0.9006)
+  4410   0.000352   16h15m35s   20h36m38s
+  4420   0.000344   16h17m47s   20h34m24s
+  4430   0.000276   16h19m58s   20h32m09s
+  4440   0.000373   16h22m09s   20h29m53s
+  4450   0.000313   16h24m19s   20h27m38s
+   R2 at epoch 4450:  train 0.9975   validation 0.9769   (gap +0.0206, worst val R_H24 @ 110 = 0.9217)
+  4460   0.000446   16h26m39s   20h25m35s
+  4470   0.000396   16h28m50s   20h23m19s
+  4480   0.000516   16h31m00s   20h21m04s
+  4490   0.000454   16h33m12s   20h18m50s
+  4500   0.000467   16h35m24s   20h16m36s
+   R2 at epoch 4500:  train 0.9981   validation 0.9702   (gap +0.0279, worst val R_H24 @ 110 = 0.8974)
+  4510   0.000372   16h37m43s   20h14m31s
+  4520   0.000364   16h39m54s   20h12m16s
+  4530   0.000325   16h42m05s   20h10m01s
+  4540   0.000497   16h44m16s   20h07m47s
+  4550   0.000579   16h46m27s   20h05m32s
+   R2 at epoch 4550:  train 0.9960   validation 0.9696   (gap +0.0265, worst val R_H24 @ 110 = 0.8885)
+  4560   0.000299   16h48m46s   20h03m27s
+  4570   0.000409   16h50m58s   20h01m13s
+  4580   0.000498   16h53m09s   19h58m58s
+  4590   0.000333   16h55m20s   19h56m43s
+  4600   0.000431   16h57m31s   19h54m29s
+   R2 at epoch 4600:  train 0.9845   validation 0.9389   (gap +0.0455, worst val R_H24 @ 10 = 0.5139)
+  4610   0.000505   16h59m51s   19h52m24s
+  4620   0.000401   17h02m02s   19h50m10s
+  4630   0.000446   17h04m13s   19h47m55s
+  4640   0.000336   17h06m23s   19h45m40s
+  4650   0.000272   17h08m35s   19h43m25s
+   R2 at epoch 4650:  train 0.9978   validation 0.9604   (gap +0.0374, worst val R_H24 @ 110 = 0.8508)
+  4660   0.000297   17h10m54s   19h41m20s
+  4670   0.000277   17h13m05s   19h39m05s
+  4680   0.000311   17h15m15s   19h36m50s
+  4690   0.000371   17h17m26s   19h34m35s
+  4700   0.000350   17h19m37s   19h32m20s
+   R2 at epoch 4700:  train 0.9970   validation 0.9667   (gap +0.0303, worst val R_H24 @ 30 = 0.8930)
+  4710   0.000301   17h21m57s   19h30m15s
+  4720   0.000295   17h24m08s   19h28m01s
+  4730   0.000290   17h26m20s   19h25m47s
+  4740   0.000495   17h28m30s   19h23m32s
+  4750   0.000258   17h30m41s   19h21m17s
+   R2 at epoch 4750:  train 0.9982   validation 0.9698   (gap +0.0285, worst val R_H24 @ 110 = 0.8892)
+  4760   0.000359   17h33m00s   19h19m11s
+  4770   0.000323   17h35m11s   19h16m57s
+  4780   0.000237   17h37m23s   19h14m43s
+  4790   0.000334   17h39m34s   19h12m28s
+  4800   0.000437   17h41m44s   19h10m13s
+   R2 at epoch 4800:  train 0.9954   validation 0.9535   (gap +0.0420, worst val R_H24 @ 110 = 0.8304)
+  4810   0.000420   17h44m03s   19h08m06s
+  4820   0.000315   17h46m14s   19h05m52s
+  4830   0.000345   17h48m25s   19h03m38s
+  4840   0.000295   17h50m36s   19h01m23s
+  4850   0.000343   17h52m48s   18h59m09s
+   R2 at epoch 4850:  train 0.9981   validation 0.9649   (gap +0.0332, worst val R_H24 @ 110 = 0.8766)
+  4860   0.000375   17h55m08s   18h57m04s
+  4870   0.000347   17h57m19s   18h54m50s
+  4880   0.000388   17h59m30s   18h52m36s
+  4890   0.000413   18h01m42s   18h50m21s
+  4900   0.000267   18h03m52s   18h48m06s
+   R2 at epoch 4900:  train 0.9980   validation 0.9688   (gap +0.0292, worst val R_H24 @ 110 = 0.8848)
+  4910   0.000282   18h06m11s   18h46m00s
+  4920   0.000358   18h08m22s   18h43m46s
+  4930   0.000346   18h10m33s   18h41m31s
+  4940   0.000421   18h12m44s   18h39m17s
+  4950   0.000409   18h14m56s   18h37m03s
+   R2 at epoch 4950:  train 0.9959   validation 0.9726   (gap +0.0233, worst val R_H24 @ 10 = 0.8650)
+  4960   0.000350   18h17m16s   18h34m58s
+  4970   0.000324   18h19m28s   18h32m44s
+  4980   0.000250   18h21m38s   18h30m29s
+  4990   0.000223   18h23m48s   18h28m14s
+  5000   0.000304   18h25m59s   18h25m59s
+   R2 at epoch 5000:  train 0.9968   validation 0.9772   (gap +0.0196, worst val R_H24 @ 110 = 0.9275)
+  5010   0.000310   18h28m18s   18h23m52s
+  5020   0.000351   18h30m29s   18h21m38s
+  5030   0.000304   18h32m41s   18h19m24s
+  5040   0.000277   18h34m52s   18h17m10s
+  5050   0.000251   18h37m03s   18h14m56s
+   R2 at epoch 5050:  train 0.9980   validation 0.9697   (gap +0.0283, worst val R_H24 @ 110 = 0.8871)
+  5060   0.000328   18h39m22s   18h12m49s
+  5070   0.000353   18h41m33s   18h10m35s
+  5080   0.000259   18h43m45s   18h08m21s
+  5090   0.000306   18h45m55s   18h06m06s
+  5100   0.000212   18h48m06s   18h03m52s
+   R2 at epoch 5100:  train 0.9980   validation 0.9725   (gap +0.0255, worst val R_H24 @ 110 = 0.9000)
+  5110   0.000354   18h50m25s   18h01m45s
+  5120   0.000295   18h52m37s   17h59m31s
+  5130   0.000392   18h54m47s   17h57m17s
+  5140   0.000386   18h56m58s   17h55m02s
+  5150   0.000449   18h59m09s   17h52m47s
+   R2 at epoch 5150:  train 0.9984   validation 0.9728   (gap +0.0256, worst val R_H24 @ 110 = 0.9096)
+  5160   0.000281   19h01m29s   17h50m41s
+  5170   0.000265   19h03m40s   17h48m27s
+  5180   0.000457   19h05m52s   17h46m13s
+  5190   0.000262   19h08m03s   17h43m59s
+  5200   0.000282   19h10m14s   17h41m46s
+   R2 at epoch 5200:  train 0.9984   validation 0.9648   (gap +0.0336, worst val R_H24 @ 30 = 0.8745)
+  5210   0.000383   19h12m33s   17h39m39s
+  5220   0.000412   19h14m44s   17h37m24s
+  5230   0.000341   19h16m54s   17h35m09s
+  5240   0.000390   19h19m06s   17h32m55s
+  5250   0.000451   19h21m16s   17h30m41s
+   R2 at epoch 5250:  train 0.9978   validation 0.9713   (gap +0.0265, worst val R_H24 @ 10 = 0.9049)
+  5260   0.000370   19h23m37s   17h28m35s
+  5270   0.000308   19h25m48s   17h26m21s
+  5280   0.000423   19h27m59s   17h24m07s
+  5290   0.000242   19h30m11s   17h21m53s
+  5300   0.000295   19h32m22s   17h19m38s
+   R2 at epoch 5300:  train 0.9899   validation 0.9491   (gap +0.0408, worst val R_H24 @ 10 = 0.6203)
+  5310   0.000308   19h34m41s   17h17m32s
+  5320   0.000241   19h36m51s   17h15m16s
+  5330   0.000273   19h39m02s   17h13m02s
+  5340   0.000282   19h41m13s   17h10m48s
+  5350   0.000295   19h43m23s   17h08m33s
+   R2 at epoch 5350:  train 0.9962   validation 0.9485   (gap +0.0477, worst val R_H24 @ 10 = 0.7544)
+  5360   0.000342   19h45m42s   17h06m26s
+  5370   0.000316   19h47m53s   17h04m11s
+  5380   0.000246   19h50m05s   17h01m58s
+  5390   0.000248   19h52m16s   16h59m44s
+  5400   0.000248   19h54m27s   16h57m29s
+   R2 at epoch 5400:  train 0.9980   validation 0.9714   (gap +0.0265, worst val R_H24 @ 110 = 0.8958)
+  5410   0.000360   19h56m48s   16h55m24s
+  5420   0.000242   19h58m59s   16h53m10s
+  5430   0.000249   20h01m10s   16h50m55s
+  5440   0.000289   20h03m22s   16h48m42s
+  5450   0.000266   20h05m33s   16h46m28s
+   R2 at epoch 5450:  train 0.9984   validation 0.9652   (gap +0.0332, worst val R_H24 @ 10 = 0.8740)
+  5460   0.000274   20h07m53s   16h44m21s
+  5470   0.000224   20h10m04s   16h42m07s
+  5480   0.000325   20h12m15s   16h39m53s
+  5490   0.000299   20h14m27s   16h37m39s
+  5500   0.000242   20h16m38s   16h35m26s
+   R2 at epoch 5500:  train 0.9974   validation 0.9610   (gap +0.0364, worst val R_H24 @ 10 = 0.8558)
+  5510   0.000297   20h18m58s   16h33m19s
+  5520   0.000370   20h21m09s   16h31m05s
+  5530   0.000340   20h23m21s   16h28m51s
+  5540   0.000327   20h25m32s   16h26m37s
+  5550   0.000268   20h27m43s   16h24m23s
+   R2 at epoch 5550:  train 0.9984   validation 0.9709   (gap +0.0275, worst val R_H24 @ 105 = 0.9037)
+  5560   0.000231   20h30m03s   16h22m16s
+  5570   0.000242   20h32m14s   16h20m02s
+  5580   0.000279   20h34m25s   16h17m48s
+  5590   0.000340   20h36m38s   16h15m35s
+  5600   0.000353   20h38m49s   16h13m21s
+   R2 at epoch 5600:  train 0.9980   validation 0.9676   (gap +0.0304, worst val R_H24 @ 30 = 0.8881)
+  5610   0.000215   20h41m08s   16h11m13s
+  5620   0.000280   20h43m20s   16h09m00s
+  5630   0.000296   20h45m31s   16h06m46s
+  5640   0.000254   20h47m42s   16h04m32s
+  5650   0.000316   20h49m53s   16h02m18s
+   R2 at epoch 5650:  train 0.9977   validation 0.9731   (gap +0.0246, worst val R_H24 @ 10 = 0.9110)
+  5660   0.000283   20h52m11s   16h00m09s
+  5670   0.000243   20h54m22s   15h57m55s
+  5680   0.000336   20h56m33s   15h55m41s
+  5690   0.000220   20h58m44s   15h53m27s
+  5700   0.000373   21h00m55s   15h51m13s
+   R2 at epoch 5700:  train 0.9985   validation 0.9679   (gap +0.0306, worst val R_H24 @ 35 = 0.8877)
+  5710   0.000271   21h03m15s   15h49m06s
+  5720   0.000231   21h05m26s   15h46m51s
+  5730   0.000277   21h07m37s   15h44m38s
+  5740   0.000325   21h09m48s   15h42m24s
+  5750   0.000280   21h12m00s   15h40m10s
+   R2 at epoch 5750:  train 0.9982   validation 0.9698   (gap +0.0284, worst val R_H24 @ 110 = 0.8884)
+  5760   0.000460   21h14m19s   15h38m02s
+  5770   0.000294   21h16m32s   15h35m50s
+  5780   0.000260   21h18m43s   15h33m36s
+  5790   0.000339   21h20m54s   15h31m22s
+  5800   0.000221   21h23m06s   15h29m08s
+   R2 at epoch 5800:  train 0.9975   validation 0.9519   (gap +0.0456, worst val R_H24 @ 10 = 0.8156)
+  5810   0.000267   21h25m27s   15h27m01s
+  5820   0.000253   21h27m39s   15h24m48s
+  5830   0.000248   21h29m50s   15h22m34s
+  5840   0.000408   21h32m01s   15h20m20s
+  5850   0.000348   21h34m11s   15h18m06s
+   R2 at epoch 5850:  train 0.9985   validation 0.9667   (gap +0.0318, worst val R_H24 @ 10 = 0.8866)
+  5860   0.000230   21h36m30s   15h15m57s
+  5870   0.000241   21h38m41s   15h13m43s
+  5880   0.000331   21h40m52s   15h11m30s
+  5890   0.000351   21h43m03s   15h09m16s
+  5900   0.000260   21h45m16s   15h07m03s
+   R2 at epoch 5900:  train 0.9972   validation 0.9739   (gap +0.0233, worst val R_H24 @ 110 = 0.8924)
+  5910   0.000265   21h47m36s   15h04m55s
+  5920   0.000348   21h49m48s   15h02m42s
+  5930   0.000237   21h52m01s   15h00m29s
+  5940   0.000261   21h54m13s   14h58m16s
+  5950   0.000272   21h56m25s   14h56m02s
+   R2 at epoch 5950:  train 0.9980   validation 0.9684   (gap +0.0297, worst val R_H24 @ 110 = 0.8867)
+  5960   0.000209   21h58m46s   14h53m55s
+  5970   0.000310   22h00m57s   14h51m42s
+  5980   0.000195   22h03m10s   14h49m29s
+  5990   0.000322   22h05m22s   14h47m16s
+  6000   0.000377   22h07m34s   14h45m03s
+   R2 at epoch 6000:  train 0.9979   validation 0.9692   (gap +0.0287, worst val R_H24 @ 30 = 0.8938)
+  6010   0.000274   22h09m55s   14h42m55s
+  6020   0.000264   22h12m06s   14h40m41s
+  6030   0.000314   22h14m18s   14h38m28s
+  6040   0.000284   22h16m29s   14h36m14s
+  6050   0.000303   22h18m39s   14h34m00s
+   R2 at epoch 6050:  train 0.9985   validation 0.9564   (gap +0.0421, worst val R_H24 @ 10 = 0.8273)
+  6060   0.000300   22h20m58s   14h31m51s
+  6070   0.000315   22h23m11s   14h29m38s
+  6080   0.000315   22h25m23s   14h27m25s
+  6090   0.000369   22h27m34s   14h25m11s
+  6100   0.000249   22h29m46s   14h22m58s
+   R2 at epoch 6100:  train 0.9962   validation 0.9510   (gap +0.0452, worst val R_H24 @ 110 = 0.8241)
+  6110   0.000290   22h32m06s   14h20m49s
+  6120   0.000305   22h34m17s   14h18m36s
+  6130   0.000305   22h36m30s   14h16m23s
+  6140   0.000303   22h38m41s   14h14m09s
+  6150   0.000286   22h40m53s   14h11m56s
+   R2 at epoch 6150:  train 0.9982   validation 0.9667   (gap +0.0315, worst val R_H24 @ 110 = 0.8830)
+  6160   0.000201   22h43m13s   14h09m48s
+  6170   0.000405   22h45m25s   14h07m34s
+  6180   0.000300   22h47m37s   14h05m21s
+  6190   0.000198   22h49m48s   14h03m07s
+  6200   0.000232   22h51m59s   14h00m53s
+   R2 at epoch 6200:  train 0.9984   validation 0.9596   (gap +0.0388, worst val R_H24 @ 30 = 0.8640)
+  6210   0.000236   22h54m19s   13h58m45s
+  6220   0.000260   22h56m29s   13h56m31s
+  6230   0.000230   22h58m41s   13h54m17s
+  6240   0.000222   23h00m51s   13h52m03s
+  6250   0.000272   23h03m02s   13h49m49s
+   R2 at epoch 6250:  train 0.9912   validation 0.9454   (gap +0.0458, worst val R_H24 @ 10 = 0.6585)
+  6260   0.000246   23h05m21s   13h47m40s
+  6270   0.000236   23h07m31s   13h45m26s
+  6280   0.000259   23h09m44s   13h43m13s
+  6290   0.000343   23h11m55s   13h40m59s
+  6300   0.000155   23h14m06s   13h38m45s
+   R2 at epoch 6300:  train 0.9987   validation 0.9654   (gap +0.0333, worst val R_H24 @ 110 = 0.8788)
+  6310   0.000301   23h16m25s   13h36m36s
+  6320   0.000275   23h18m36s   13h34m22s
+  6330   0.000211   23h20m47s   13h32m08s
+  6340   0.000241   23h22m58s   13h29m55s
+  6350   0.000221   23h25m10s   13h27m41s
+   R2 at epoch 6350:  train 0.9980   validation 0.9640   (gap +0.0340, worst val R_H24 @ 10 = 0.8457)
+  6360   0.000281   23h27m31s   13h25m34s
+  6370   0.000196   23h29m43s   13h23m20s
+  6380   0.000274   23h31m55s   13h21m07s
+  6390   0.000293   23h34m05s   13h18m53s
+  6400   0.000280   23h36m16s   13h16m39s
+   R2 at epoch 6400:  train 0.9981   validation 0.9649   (gap +0.0332, worst val R_H24 @ 20 = 0.8789)
+  6410   0.000196   23h38m36s   13h14m30s
+  6420   0.000236   23h40m47s   13h12m16s
+  6430   0.000302   23h42m58s   13h10m02s
+  6440   0.000241   23h45m08s   13h07m48s
+  6450   0.000226   23h47m21s   13h05m35s
+   R2 at epoch 6450:  train 0.9977   validation 0.9662   (gap +0.0314, worst val R_H24 @ 110 = 0.8798)
+  6460   0.000246   23h49m39s   13h03m26s
+  6470   0.000284   23h51m51s   13h01m12s
+  6480   0.000227   23h54m02s   12h58m59s
+  6490   0.000263   23h56m15s   12h56m46s
+  6500   0.000243   23h58m27s   12h54m33s
+   R2 at epoch 6500:  train 0.9982   validation 0.9622   (gap +0.0360, worst val R_H24 @ 110 = 0.8510)
+  6510   0.000255   24h00m46s   12h52m24s
+  6520   0.000240   24h02m58s   12h50m10s
+  6530   0.000203   24h05m09s   12h47m57s
+  6540   0.000247   24h07m20s   12h45m43s
+  6550   0.000276   24h09m31s   12h43m29s
+   R2 at epoch 6550:  train 0.9985   validation 0.9676   (gap +0.0309, worst val R_H24 @ 85 = 0.8903)
+  6560   0.000230   24h11m52s   12h41m20s
+  6570   0.000191   24h14m04s   12h39m07s
+  6580   0.000267   24h16m15s   12h36m54s
+  6590   0.000249   24h18m27s   12h34m40s
+  6600   0.000264   24h20m38s   12h32m27s
+   R2 at epoch 6600:  train 0.9981   validation 0.9684   (gap +0.0297, worst val R_H24 @ 30 = 0.8906)
+  6610   0.000283   24h22m58s   12h30m18s
+  6620   0.000232   24h25m11s   12h28m05s
+  6630   0.000286   24h27m23s   12h25m52s
+  6640   0.000201   24h29m36s   12h23m39s
+  6650   0.000204   24h31m47s   12h21m25s
+   R2 at epoch 6650:  train 0.9978   validation 0.9575   (gap +0.0402, worst val R_H24 @ 10 = 0.8152)
+  6660   0.000197   24h34m06s   12h19m16s
+  6670   0.000186   24h36m16s   12h17m02s
+  6680   0.000192   24h38m28s   12h14m48s
+  6690   0.000205   24h40m39s   12h12m35s
+  6700   0.000250   24h42m50s   12h10m21s
+   R2 at epoch 6700:  train 0.9985   validation 0.9664   (gap +0.0321, worst val R_H24 @ 110 = 0.8697)
+  6710   0.000184   24h45m09s   12h08m11s
+  6720   0.000235   24h47m21s   12h05m58s
+  6730   0.000240   24h49m31s   12h03m44s
+  6740   0.000228   24h51m42s   12h01m30s
+  6750   0.000315   24h53m53s   11h59m16s
+   R2 at epoch 6750:  train 0.9987   validation 0.9683   (gap +0.0304, worst val R_H24 @ 105 = 0.8855)
+  6760   0.000264   24h56m13s   11h57m07s
+  6770   0.000250   24h58m22s   11h54m53s
+  6780   0.000186   25h00m34s   11h52m39s
+  6790   0.000198   25h02m46s   11h50m26s
+  6800   0.000283   25h04m57s   11h48m13s
+   R2 at epoch 6800:  train 0.9973   validation 0.9638   (gap +0.0336, worst val R_H24 @ 10 = 0.8595)
+  6810   0.000212   25h07m16s   11h46m03s
+  6820   0.000174   25h09m29s   11h43m50s
+  6830   0.000197   25h11m40s   11h41m36s
+  6840   0.000261   25h13m52s   11h39m23s
+  6850   0.000273   25h16m02s   11h37m09s
+   R2 at epoch 6850:  train 0.9982   validation 0.9655   (gap +0.0328, worst val R_H24 @ 85 = 0.8826)
+  6860   0.000191   25h18m21s   11h34m59s
+  6870   0.000234   25h20m32s   11h32m45s
+  6880   0.000246   25h22m44s   11h30m32s
+  6890   0.000178   25h24m56s   11h28m19s
+  6900   0.000184   25h27m07s   11h26m06s
+   R2 at epoch 6900:  train 0.9989   validation 0.9677   (gap +0.0312, worst val R_H24 @ 90 = 0.8890)
+  6910   0.000205   25h29m27s   11h23m56s
+  6920   0.000255   25h31m38s   11h21m42s
+  6930   0.000208   25h33m49s   11h19m29s
+  6940   0.000208   25h35m59s   11h17m15s
+  6950   0.000142   25h38m11s   11h15m02s
+   R2 at epoch 6950:  train 0.9987   validation 0.9759   (gap +0.0228, worst val R_H24 @ 110 = 0.9015)
+  6960   0.000262   25h40m31s   11h12m52s
+  6970   0.000221   25h42m41s   11h10m38s
+  6980   0.000187   25h44m52s   11h08m24s
+  6990   0.000235   25h47m04s   11h06m11s
+  7000   0.000301   25h49m16s   11h03m58s
+   R2 at epoch 7000:  train 0.9986   validation 0.9679   (gap +0.0307, worst val R_H24 @ 10 = 0.8889)
+  7010   0.000239   25h51m34s   11h01m48s
+  7020   0.000278   25h53m46s   10h59m34s
+  7030   0.000234   25h55m57s   10h57m21s
+  7040   0.000308   25h58m09s   10h55m07s
+  7050   0.000366   26h00m19s   10h52m54s
+   R2 at epoch 7050:  train 0.9981   validation 0.9697   (gap +0.0283, worst val R_H24 @ 80 = 0.9007)
+  7060   0.000166   26h02m37s   10h50m43s
+  7070   0.000140   26h04m49s   10h48m30s
+  7080   0.000216   26h06m59s   10h46m16s
+  7090   0.000225   26h09m10s   10h44m03s
+  7100   0.000144   26h11m22s   10h41m49s
+   R2 at epoch 7100:  train 0.9985   validation 0.9671   (gap +0.0314, worst val R_H24 @ 110 = 0.8795)
+  7110   0.000196   26h13m42s   10h39m39s
+  7120   0.000263   26h15m53s   10h37m26s
+  7130   0.000198   26h18m04s   10h35m12s
+  7140   0.000227   26h20m15s   10h32m59s
+  7150   0.000156   26h22m26s   10h30m45s
+   R2 at epoch 7150:  train 0.9981   validation 0.9601   (gap +0.0380, worst val R_H24 @ 110 = 0.8619)
+  7160   0.000208   26h24m46s   10h28m35s
+  7170   0.000294   26h26m57s   10h26m22s
+  7180   0.000284   26h29m06s   10h24m08s
+  7190   0.000241   26h31m18s   10h21m54s
+  7200   0.000217   26h33m30s   10h19m41s
+   R2 at epoch 7200:  train 0.9987   validation 0.9614   (gap +0.0374, worst val R_H24 @ 35 = 0.8641)
+  7210   0.000123   26h35m49s   10h17m31s
+  7220   0.000198   26h38m02s   10h15m18s
+  7230   0.000269   26h40m13s   10h13m05s
+  7240   0.000225   26h42m23s   10h10m51s
+  7250   0.000208   26h44m34s   10h08m37s
+   R2 at epoch 7250:  train 0.9989   validation 0.9664   (gap +0.0325, worst val R_H24 @ 110 = 0.8842)
+  7260   0.000185   26h46m54s   10h06m27s
+  7270   0.000260   26h49m05s   10h04m14s
+  7280   0.000169   26h51m15s   10h02m00s
+  7290   0.000229   26h53m25s   9h59m46s
+  7300   0.000213   26h55m37s   9h57m33s
+   R2 at epoch 7300:  train 0.9988   validation 0.9642   (gap +0.0345, worst val R_H24 @ 90 = 0.8779)
+  7310   0.000244   26h57m56s   9h55m22s
+  7320   0.000202   27h00m07s   9h53m09s
+  7330   0.000175   27h02m18s   9h50m56s
+  7340   0.000179   27h04m29s   9h48m42s
+  7350   0.000222   27h06m42s   9h46m29s
+   R2 at epoch 7350:  train 0.9985   validation 0.9635   (gap +0.0350, worst val R_H24 @ 35 = 0.8787)
+  7360   0.000251   27h09m01s   9h44m19s
+  7370   0.000201   27h11m13s   9h42m06s
+  7380   0.000124   27h13m24s   9h39m52s
+  7390   0.000195   27h15m35s   9h37m39s
+  7400   0.000292   27h17m45s   9h35m25s
+   R2 at epoch 7400:  train 0.9986   validation 0.9692   (gap +0.0294, worst val R_H24 @ 110 = 0.8916)
+  7410   0.000213   27h20m05s   9h33m15s
+  7420   0.000258   27h22m17s   9h31m02s
+  7430   0.000268   27h24m29s   9h28m49s
+  7440   0.000215   27h26m39s   9h26m35s
+  7450   0.000188   27h28m52s   9h24m22s
+   R2 at epoch 7450:  train 0.9985   validation 0.9757   (gap +0.0228, worst val R_H24 @ 105 = 0.9155)
+  7460   0.000136   27h31m11s   9h22m12s
+  7470   0.000297   27h33m21s   9h19m58s
+  7480   0.000195   27h35m33s   9h17m45s
+  7490   0.000214   27h37m44s   9h15m31s
+  7500   0.000274   27h39m56s   9h13m18s
+   R2 at epoch 7500:  train 0.9987   validation 0.9605   (gap +0.0382, worst val R_H24 @ 110 = 0.8577)
+  7510   0.000170   27h42m15s   9h11m08s
+  7520   0.000272   27h44m27s   9h08m54s
+  7530   0.000194   27h46m38s   9h06m41s
+  7540   0.000216   27h48m49s   9h04m28s
+  7550   0.000144   27h51m00s   9h02m14s
+   R2 at epoch 7550:  train 0.9984   validation 0.9757   (gap +0.0226, worst val R_H24 @ 110 = 0.9160)
+  7560   0.000305   27h53m19s   9h00m04s
+  7570   0.000173   27h55m31s   8h57m51s
+  7580   0.000163   27h57m42s   8h55m37s
+  7590   0.000304   27h59m53s   8h53m24s
+  7600   0.000136   28h02m04s   8h51m10s
+   R2 at epoch 7600:  train 0.9971   validation 0.9673   (gap +0.0299, worst val R_H24 @ 35 = 0.8900)
+  7610   0.000149   28h04m24s   8h49m00s
+  7620   0.000160   28h06m35s   8h46m47s
+  7630   0.000189   28h08m46s   8h44m33s
+  7640   0.000167   28h10m57s   8h42m20s
+  7650   0.000214   28h13m08s   8h40m06s
+   R2 at epoch 7650:  train 0.9986   validation 0.9710   (gap +0.0277, worst val R_H24 @ 80 = 0.9063)
+  7660   0.000214   28h15m27s   8h37m56s
+  7670   0.000251   28h17m38s   8h35m42s
+  7680   0.000133   28h19m50s   8h33m29s
+  7690   0.000201   28h22m01s   8h31m16s
+  7700   0.000240   28h24m11s   8h29m02s
+   R2 at epoch 7700:  train 0.9977   validation 0.9711   (gap +0.0266, worst val R_H24 @ 110 = 0.8972)
+  7710   0.000201   28h26m30s   8h26m51s
+  7720   0.000164   28h28m42s   8h24m38s
+  7730   0.000188   28h30m52s   8h22m25s
+  7740   0.000182   28h33m04s   8h20m11s
+  7750   0.000215   28h35m14s   8h17m58s
+   R2 at epoch 7750:  train 0.9990   validation 0.9691   (gap +0.0299, worst val R_H24 @ 90 = 0.8897)
+  7760   0.000148   28h37m34s   8h15m47s
+  7770   0.000149   28h39m45s   8h13m34s
+  7780   0.000176   28h41m55s   8h11m20s
+  7790   0.000140   28h44m07s   8h09m07s
+  7800   0.000188   28h46m19s   8h06m54s
+   R2 at epoch 7800:  train 0.9989   validation 0.9678   (gap +0.0311, worst val R_H24 @ 35 = 0.8908)
+  7810   0.000100   28h48m38s   8h04m43s
+  7820   0.000136   28h50m50s   8h02m30s
+  7830   0.000193   28h53m03s   8h00m17s
+  7840   0.000198   28h55m14s   7h58m04s
+  7850   0.000174   28h57m25s   7h55m51s
+   R2 at epoch 7850:  train 0.9981   validation 0.9564   (gap +0.0417, worst val R_H24 @ 30 = 0.8399)
+  7860   0.000198   28h59m44s   7h53m40s
+  7870   0.000199   29h01m55s   7h51m26s
+  7880   0.000216   29h04m06s   7h49m13s
+  7890   0.000210   29h06m17s   7h47m00s
+  7900   0.000150   29h08m28s   7h44m47s
+   R2 at epoch 7900:  train 0.9987   validation 0.9674   (gap +0.0312, worst val R_H24 @ 85 = 0.8865)
+  7910   0.000098   29h10m48s   7h42m36s
+  7920   0.000155   29h12m59s   7h40m22s
+  7930   0.000235   29h15m11s   7h38m09s
+  7940   0.000166   29h17m23s   7h35m56s
+  7950   0.000225   29h19m33s   7h33m43s
+   R2 at epoch 7950:  train 0.9985   validation 0.9800   (gap +0.0185, worst val R_H24 @ 85 = 0.9357)
+  7960   0.000255   29h21m53s   7h31m32s
+  7970   0.000206   29h24m04s   7h29m19s
+  7980   0.000227   29h26m15s   7h27m05s
+  7990   0.000182   29h28m27s   7h24m52s
+  8000   0.000143   29h30m38s   7h22m39s
+   R2 at epoch 8000:  train 0.9987   validation 0.9455   (gap +0.0532, worst val R_H24 @ 85 = 0.7964)
+  8010   0.000165   29h32m58s   7h20m28s
+  8020   0.000193   29h35m10s   7h18m15s
+  8030   0.000258   29h37m22s   7h16m02s
+  8040   0.000176   29h39m33s   7h13m49s
+  8050   0.000161   29h41m44s   7h11m36s
+   R2 at epoch 8050:  train 0.9972   validation 0.9552   (gap +0.0420, worst val R_H24 @ 10 = 0.7664)
+  8060   0.000458   29h44m03s   7h09m24s
+  8070   0.000158   29h46m14s   7h07m11s
+  8080   0.000193   29h48m26s   7h04m58s
+  8090   0.000153   29h50m38s   7h02m45s
+  8100   0.000212   29h52m49s   7h00m32s
+   R2 at epoch 8100:  train 0.9986   validation 0.9651   (gap +0.0334, worst val R_H24 @ 110 = 0.8706)
+  8110   0.000079   29h55m08s   6h58m21s
+  8120   0.000148   29h57m20s   6h56m08s
+  8130   0.000235   29h59m32s   6h53m55s
+  8140   0.000147   30h01m42s   6h51m41s
+  8150   0.000200   30h03m55s   6h49m28s
+   R2 at epoch 8150:  train 0.9981   validation 0.9749   (gap +0.0232, worst val R_H24 @ 110 = 0.9120)
+  8160   0.000165   30h06m14s   6h47m17s
+  8170   0.000244   30h08m24s   6h45m03s
+  8180   0.000149   30h10m34s   6h42m50s
+  8190   0.000262   30h12m44s   6h40m37s
+  8200   0.000351   30h14m54s   6h38m23s
+   R2 at epoch 8200:  train 0.9985   validation 0.9553   (gap +0.0432, worst val R_H24 @ 20 = 0.8304)
+  8210   0.000125   30h17m14s   6h36m12s
+  8220   0.000198   30h19m27s   6h33m59s
+  8230   0.000145   30h21m37s   6h31m46s
+  8240   0.000135   30h23m48s   6h29m33s
+  8250   0.000236   30h25m59s   6h27m19s
+   R2 at epoch 8250:  train 0.9955   validation 0.9393   (gap +0.0562, worst val R_H24 @ 85 = 0.7513)
+  8260   0.000129   30h28m19s   6h25m08s
+  8270   0.000154   30h30m30s   6h22m55s
+  8280   0.000278   30h32m40s   6h20m42s
+  8290   0.000151   30h34m53s   6h18m29s
+  8300   0.000172   30h37m04s   6h16m16s
+   R2 at epoch 8300:  train 0.9985   validation 0.9662   (gap +0.0323, worst val R_H24 @ 30 = 0.8823)
+  8310   0.000230   30h39m24s   6h14m04s
+  8320   0.000138   30h41m35s   6h11m51s
+  8330   0.000165   30h43m47s   6h09m38s
+  8340   0.000179   30h45m58s   6h07m25s
+  8350   0.000195   30h48m09s   6h05m12s
+   R2 at epoch 8350:  train 0.9988   validation 0.9688   (gap +0.0301, worst val R_H24 @ 35 = 0.8946)
+  8360   0.000121   30h50m28s   6h03m00s
+  8370   0.000161   30h52m40s   6h00m47s
+  8380   0.000149   30h54m50s   5h58m34s
+  8390   0.000215   30h57m01s   5h56m21s
+  8400   0.000215   30h59m12s   5h54m08s
+   R2 at epoch 8400:  train 0.9989   validation 0.9711   (gap +0.0278, worst val R_H24 @ 105 = 0.9035)
+  8410   0.000101   31h01m31s   5h51m56s
+  8420   0.000206   31h03m42s   5h49m43s
+  8430   0.000165   31h05m53s   5h47m30s
+  8440   0.000159   31h08m04s   5h45m16s
+  8450   0.000135   31h10m14s   5h43m03s
+   R2 at epoch 8450:  train 0.9990   validation 0.9499   (gap +0.0491, worst val R_H24 @ 110 = 0.7893)
+  8460   0.000129   31h12m34s   5h40m52s
+  8470   0.000166   31h14m45s   5h38m39s
+  8480   0.000166   31h16m56s   5h36m26s
+  8490   0.000219   31h19m07s   5h34m12s
+  8500   0.000150   31h21m19s   5h31m59s
+   R2 at epoch 8500:  train 0.9982   validation 0.9585   (gap +0.0397, worst val R_H24 @ 110 = 0.8420)
+  8510   0.000081   31h23m39s   5h29m48s
+  8520   0.000112   31h25m51s   5h27m35s
+  8530   0.000231   31h28m01s   5h25m22s
+  8540   0.000179   31h30m11s   5h23m08s
+  8550   0.000153   31h32m23s   5h20m55s
+   R2 at epoch 8550:  train 0.9990   validation 0.9625   (gap +0.0365, worst val R_H24 @ 110 = 0.8579)
+  8560   0.000191   31h34m43s   5h18m44s
+  8570   0.000177   31h36m54s   5h16m31s
+  8580   0.000169   31h39m05s   5h14m18s
+  8590   0.000141   31h41m16s   5h12m05s
+  8600   0.000152   31h43m27s   5h09m51s
+   R2 at epoch 8600:  train 0.9984   validation 0.9597   (gap +0.0387, worst val R_H24 @ 20 = 0.8594)
+  8610   0.000160   31h45m46s   5h07m40s
+  8620   0.000131   31h47m57s   5h05m27s
+  8630   0.000122   31h50m08s   5h03m13s
+  8640   0.000206   31h52m19s   5h01m00s
+  8650   0.000225   31h54m30s   4h58m47s
+   R2 at epoch 8650:  train 0.9989   validation 0.9629   (gap +0.0360, worst val R_H24 @ 35 = 0.8654)
+  8660   0.000173   31h56m51s   4h56m36s
+  8670   0.000168   31h59m02s   4h54m23s
+  8680   0.000140   32h01m13s   4h52m10s
+  8690   0.000143   32h03m24s   4h49m56s
+  8700   0.000179   32h05m34s   4h47m43s
+   R2 at epoch 8700:  train 0.9989   validation 0.9696   (gap +0.0292, worst val R_H24 @ 85 = 0.8969)
+  8710   0.000188   32h07m53s   4h45m31s
+  8720   0.000127   32h10m03s   4h43m18s
+  8730   0.000117   32h12m15s   4h41m05s
+  8740   0.000150   32h14m25s   4h38m52s
+  8750   0.000150   32h16m37s   4h36m39s
+   R2 at epoch 8750:  train 0.9980   validation 0.9586   (gap +0.0395, worst val R_H24 @ 110 = 0.8432)
+  8760   0.000151   32h18m57s   4h34m27s
+  8770   0.000174   32h21m08s   4h32m14s
+  8780   0.000133   32h23m20s   4h30m01s
+  8790   0.000195   32h25m31s   4h27m48s
+  8800   0.000111   32h27m43s   4h25m35s
+   R2 at epoch 8800:  train 0.9971   validation 0.9329   (gap +0.0642, worst val R_H24 @ 110 = 0.7322)
+  8810   0.000173   32h30m04s   4h23m24s
+  8820   0.000218   32h32m16s   4h21m11s
+  8830   0.000225   32h34m28s   4h18m58s
+  8840   0.000163   32h36m39s   4h16m45s
+  8850   0.000170   32h38m50s   4h14m32s
+   R2 at epoch 8850:  train 0.9986   validation 0.9638   (gap +0.0348, worst val R_H24 @ 45 = 0.8760)
+  8860   0.000240   32h41m09s   4h12m20s
+  8870   0.000296   32h43m19s   4h10m07s
+  8880   0.000139   32h45m30s   4h07m54s
+  8890   0.000186   32h47m40s   4h05m41s
+  8900   0.000145   32h49m51s   4h03m27s
+   R2 at epoch 8900:  train 0.9986   validation 0.9575   (gap +0.0411, worst val R_H24 @ 10 = 0.8400)
+  8910   0.000157   32h52m12s   4h01m16s
+  8920   0.000140   32h54m24s   3h59m03s
+  8930   0.000143   32h56m34s   3h56m50s
+  8940   0.000207   32h58m45s   3h54m37s
+  8950   0.000118   33h00m57s   3h52m24s
+   R2 at epoch 8950:  train 0.9986   validation 0.9518   (gap +0.0467, worst val R_H24 @ 110 = 0.8092)
+  8960   0.000157   33h03m16s   3h50m12s
+  8970   0.000167   33h05m27s   3h47m59s
+  8980   0.000190   33h07m38s   3h45m46s
+  8990   0.000112   33h09m49s   3h43m33s
+  9000   0.000203   33h11m59s   3h41m19s
+   R2 at epoch 9000:  train 0.9990   validation 0.9539   (gap +0.0451, worst val R_H24 @ 110 = 0.8057)
+  9010   0.000149   33h14m18s   3h39m07s
+  9020   0.000190   33h16m29s   3h36m54s
+  9030   0.000169   33h18m39s   3h34m41s
+  9040   0.000201   33h20m50s   3h32m28s
+  9050   0.000186   33h23m02s   3h30m15s
+   R2 at epoch 9050:  train 0.9984   validation 0.9213   (gap +0.0771, worst val R_H24 @ 85 = 0.6536)
+  9060   0.000115   33h25m22s   3h28m03s
+  9070   0.000094   33h27m35s   3h25m50s
+  9080   0.000246   33h29m44s   3h23m37s
+  9090   0.000119   33h31m56s   3h21m24s
+  9100   0.000077   33h34m05s   3h19m11s
+   R2 at epoch 9100:  train 0.9967   validation 0.9493   (gap +0.0474, worst val R_H24 @ 10 = 0.7833)
+  9110   0.000183   33h36m26s   3h16m59s
+  9120   0.000092   33h38m38s   3h14m46s
+  9130   0.000124   33h40m49s   3h12m33s
+  9140   0.000164   33h43m00s   3h10m20s
+  9150   0.000162   33h45m10s   3h08m07s
+   R2 at epoch 9150:  train 0.9991   validation 0.9525   (gap +0.0466, worst val R_H24 @ 85 = 0.8001)
+  9160   0.000161   33h47m28s   3h05m55s
+  9170   0.000129   33h49m40s   3h03m42s
+  9180   0.000178   33h51m52s   3h01m29s
+  9190   0.000145   33h54m03s   2h59m16s
+  9200   0.000250   33h56m14s   2h57m03s
+   R2 at epoch 9200:  train 0.9989   validation 0.9465   (gap +0.0524, worst val R_H24 @ 110 = 0.7431)
+  9210   0.000165   33h58m35s   2h54m51s
+  9220   0.000119   34h00m45s   2h52m38s
+  9230   0.000228   34h02m57s   2h50m25s
+  9240   0.000154   34h05m08s   2h48m12s
+  9250   0.000212   34h07m19s   2h45m59s
+   R2 at epoch 9250:  train 0.9990   validation 0.9671   (gap +0.0319, worst val R_H24 @ 85 = 0.8823)
+  9260   0.000180   34h09m38s   2h43m47s
+  9270   0.000155   34h11m50s   2h41m34s
+  9280   0.000188   34h14m00s   2h39m21s
+  9290   0.000159   34h16m11s   2h37m08s
+  9300   0.000244   34h18m22s   2h34m55s
+   R2 at epoch 9300:  train 0.9982   validation 0.9781   (gap +0.0201, worst val R_H24 @ 20 = 0.9090)
+  9310   0.000240   34h20m42s   2h32m43s
+  9320   0.000164   34h22m52s   2h30m30s
+  9330   0.000167   34h25m04s   2h28m17s
+  9340   0.000139   34h27m14s   2h26m04s
+  9350   0.000170   34h29m27s   2h23m51s
+   R2 at epoch 9350:  train 0.9988   validation 0.9667   (gap +0.0321, worst val R_H24 @ 10 = 0.8890)
+  9360   0.000121   34h31m45s   2h21m39s
+  9370   0.000150   34h33m57s   2h19m26s
+  9380   0.000161   34h36m08s   2h17m13s
+  9390   0.000169   34h38m18s   2h15m00s
+  9400   0.000134   34h40m29s   2h12m47s
+   R2 at epoch 9400:  train 0.9990   validation 0.9619   (gap +0.0371, worst val R_H24 @ 30 = 0.8655)
+  9410   0.000164   34h42m50s   2h10m35s
+  9420   0.000180   34h45m01s   2h08m22s
+  9430   0.000119   34h47m11s   2h06m09s
+  9440   0.000121   34h49m22s   2h03m56s
+  9450   0.000171   34h51m34s   2h01m43s
+   R2 at epoch 9450:  train 0.9989   validation 0.9576   (gap +0.0413, worst val R_H24 @ 110 = 0.8173)
+  9460   0.000103   34h53m55s   1h59m31s
+  9470   0.000190   34h56m06s   1h57m18s
+  9480   0.000210   34h58m18s   1h55m05s
+  9490   0.000170   35h00m28s   1h52m52s
+  9500   0.000103   35h02m40s   1h50m40s
+   R2 at epoch 9500:  train 0.9991   validation 0.9659   (gap +0.0333, worst val R_H24 @ 110 = 0.8707)
+  9510   0.000158   35h05m00s   1h48m27s
+  9520   0.000178   35h07m12s   1h46m14s
+  9530   0.000135   35h09m22s   1h44m01s
+  9540   0.000154   35h11m33s   1h41m48s
+  9550   0.000123   35h13m44s   1h39m36s
+   R2 at epoch 9550:  train 0.9992   validation 0.9480   (gap +0.0512, worst val R_H24 @ 110 = 0.7630)
+  9560   0.000129   35h16m03s   1h37m23s
+  9570   0.000154   35h18m14s   1h35m10s
+  9580   0.000144   35h20m25s   1h32m57s
+  9590   0.000156   35h22m38s   1h30m44s
+  9600   0.000272   35h24m50s   1h28m32s
+   R2 at epoch 9600:  train 0.9990   validation 0.9665   (gap +0.0325, worst val R_H24 @ 80 = 0.8818)
+  9610   0.000169   35h27m09s   1h26m19s
+  9620   0.000156   35h29m19s   1h24m06s
+  9630   0.000188   35h31m31s   1h21m53s
+  9640   0.000109   35h33m41s   1h19m40s
+  9650   0.000122   35h35m52s   1h17m28s
+   R2 at epoch 9650:  train 0.9989   validation 0.9725   (gap +0.0264, worst val R_H24 @ 80 = 0.9098)
+  9660   0.000140   35h38m10s   1h15m15s
+  9670   0.000233   35h40m20s   1h13m02s
+  9680   0.000134   35h42m33s   1h10m49s
+  9690   0.000141   35h44m45s   1h08m36s
+  9700   0.000132   35h46m57s   1h06m24s
+   R2 at epoch 9700:  train 0.9973   validation 0.9186   (gap +0.0787, worst val R_H24 @ 110 = 0.6039)
+  9710   0.000191   35h49m16s   1h04m11s
+  9720   0.000241   35h51m26s   1h01m58s
+  9730   0.000102   35h53m38s   0h59m45s
+  9740   0.000117   35h55m49s   0h57m32s
+  9750   0.000137   35h58m01s   0h55m20s
+   R2 at epoch 9750:  train 0.9985   validation 0.9594   (gap +0.0391, worst val R_H24 @ 20 = 0.8636)
+  9760   0.000192   36h00m21s   0h53m07s
+  9770   0.000108   36h02m32s   0h50m54s
+  9780   0.000154   36h04m44s   0h48m41s
+  9790   0.000162   36h06m57s   0h46m28s
+  9800   0.000109   36h09m08s   0h44m16s
+   R2 at epoch 9800:  train 0.9988   validation 0.9559   (gap +0.0429, worst val R_H24 @ 110 = 0.8273)
+  9810   0.000208   36h11m27s   0h42m03s
+  9820   0.000153   36h13m37s   0h39m50s
+  9830   0.000148   36h15m48s   0h37m37s
+  9840   0.000103   36h17m59s   0h35m24s
+  9850   0.000106   36h20m10s   0h33m12s
+   R2 at epoch 9850:  train 0.9991   validation 0.9682   (gap +0.0309, worst val R_H24 @ 20 = 0.8881)
+  9860   0.000168   36h22m30s   0h30m59s
+  9870   0.000121   36h24m41s   0h28m46s
+  9880   0.000127   36h26m51s   0h26m33s
+  9890   0.000155   36h29m03s   0h24m20s
+  9900   0.000111   36h31m14s   0h22m08s
+   R2 at epoch 9900:  train 0.9992   validation 0.9654   (gap +0.0338, worst val R_H24 @ 20 = 0.8804)
+  9910   0.000172   36h33m35s   0h19m55s
+  9920   0.000155   36h35m46s   0h17m42s
+  9930   0.000172   36h37m56s   0h15m29s
+  9940   0.000144   36h40m07s   0h13m16s
+  9950   0.000163   36h42m18s   0h11m04s
+   R2 at epoch 9950:  train 0.9986   validation 0.9630   (gap +0.0356, worst val R_H24 @ 80 = 0.8659)
+  9960   0.000112   36h44m37s   0h08m51s
+  9970   0.000117   36h46m48s   0h06m38s
+  9980   0.000145   36h48m59s   0h04m25s
+  9990   0.000130   36h51m11s   0h02m12s
+ 10000   0.000160   36h53m22s   0h00m00s
+   R2 at epoch 10000:  train 0.9991   validation 0.9590   (gap +0.0401, worst val R_H24 @ 110 = 0.8411)
+
+==========================================================================
+Finished at epoch 10000 after 36h53m30s
+final loss            0.000160
+best loss             0.000061
+best validation R2    0.9875 at epoch 3050   -> results_si_cps4_b1/mgn_best_val.pt
+Model saved to results_si_cps4_b1/multi_geometry_mgn.pt
+
+R2 vs epoch plot:  python scripts/check_fit.py --curves-only --ckpt results_si_cps4_b1/mgn_best_val.pt
+==========================================================================

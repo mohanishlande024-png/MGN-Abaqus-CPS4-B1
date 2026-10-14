@@ -1,0 +1,6 @@
+level,files,mean_r2,median_r2,worst_r2,worst_case,mean_abs_peak_err_pct,mean_rmse_over_peak_pct
+train,540,0.994693,0.998276,0.913334,R_H12 @ 10,1.6155,0.5984
+validation,80,0.987804,0.991744,0.961733,R_H24 @ 110,6.2325,1.0481
+unseen_loads,81,0.981649,0.995623,0.823657,E_H6 @ 8,5.4341,1.0848
+unseen_interp,207,0.981850,0.992212,0.836707,R_H16 @ 8,3.2546,1.1268
+unseen_extrap,115,0.915582,0.954003,0.677587,E_H8 @ 8,12.5228,2.4167
